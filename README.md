@@ -35,9 +35,60 @@ This project implements a sophisticated system to detect and count people enteri
 ---
 
 ## 📥 Input & Output Files
-- **Input Video**: Paste your video file path here (e.g., `/content/people-walking video.mp4`).
-- **Output People Flow Detection Video**: Save as `output_video.mp4`.
-- **Heatmap Image**: Save as `heatmap.png`.
+
+### 🎥 Input Video SS:
+[![Input Video](https://github.com/Moynuddin780/People-Flow-Detection-using-Object-Tracking/blob/main/Input%20video%20SS.jpg)
+
+### 🎥 Output Video SS:
+[![Output Video](https://github.com/Moynuddin780/People-Flow-Detection-using-Object-Tracking/blob/main/Output%20ScreenShoot.jpg)
+
+---
+
+🧰 Tools, Libraries & Techniques Used
+* 👤 Object Detection:
+  * YOLOv8 (yolov8n.pt) – detects humans (class 0) in each frame.
+
+* 🎯 Object Tracking:
+  * ByteTrack from Supervision – assigns unique IDs and tracks movement across frames.
+ 
+---
+
+* 📐 Virtual Line Zones:
+  * Defined two horizontal lines (IN and OUT) using pixel y-coordinates:
+    * Upper Line (IN) → y = height / 3 → color: blue
+    * Lower Line (OUT) → y = 2 * height / 3 → color: red
+   
+---
+
+* 🔢 Counting Logic:
+  * Maintains a history of object center positions.
+  * Counts as:
+    * IN when person moves downward crossing upper line.
+    * OUT when person moves upward crossing lower line.
+      
+---
+
+* 🎥 Video Processing:
+  * OpenCV used to:
+    * Read and write video.
+    * Draw bounding boxes, lines, and counters on frames.
+      
+---
+
+* 🔥 Heatmap Visualization:
+  * Track center (x, y) coordinates of people.
+  * Accumulate them in a 2D matrix.
+  * Apply Gaussian Blur for smoothing.
+  * Visualize using Matplotlib with hot colormap.
+ 
+---
+
+* 📦 Libraries:
+  * opencv-python
+  * ultralytics (YOLOv8)
+  * supervision
+  * numpy
+  * matplotlib
 
 ---
 
